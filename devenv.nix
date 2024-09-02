@@ -1,7 +1,7 @@
-{ pkgs, lib, config, inputs, ... }:
+{ pkgs, ... }:
 
 {
-  packages = with pkgs; [ boost clang git ncurses ];
+  packages = with pkgs; [ boost clang doxygen git ncurses ];
 
   languages = { cplusplus = { enable = true; }; };
 
