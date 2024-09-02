@@ -6,8 +6,8 @@ namespace po = boost::program_options;
 
 int main(int argc, char *argv[]) {
   try {
-    int rows; /// Количество рядов на поле
-    int cols; /// Количество колонок на поле
+    int rows; /// Number of rows
+    int cols; /// Number of cols
 
     po::options_description desc("Allowed options");
     desc.add_options()("about", "about this program")("help,h",

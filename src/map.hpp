@@ -2,21 +2,21 @@
 
 #include <vector>
 
-/// Тип клетки
+/// Field type
 enum MapType {
-  Empty = 1, ///< Пустая клетка. Вариант по умолчанию
-  Start = 2, ///< Клетка начала маршрута
-  Stop = 4,  ///< Клетка конца маршрута
-  Wall = 8   ///< Стена
+  Empty = 1,  ///< Empty cell. Default variant
+  Start = 2,  ///< Route start cell
+  Finish = 4, ///< Route finish cell
+  Wall = 8    ///< Wall
 };
 
-/// Представление карты
+/// Map view
 class Map {
 public:
-  /// Конструктор
+  /// Constructor
   ///
-  /// @param[in] cols Число столбцов
-  /// @param[out] rows Число рядов
+  /// @param[in] cols Number of cols
+  /// @param[out] rows Number of rows
   Map(int cols, int rows);
   Map(Map &&) = default;
   Map(const Map &) = default;
@@ -25,6 +25,6 @@ public:
   ~Map();
 
 private:
-  /// Двумерная матрица, представляющая клетки поля
+  /// Two-dimensional matrix representing the cells of a field
   std::vector<std::vector<MapType>> fields;
 };
