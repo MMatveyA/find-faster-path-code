@@ -10,10 +10,10 @@ int main(int argc, char *argv[]) {
     int cols; /// Количество колонок на поле
 
     po::options_description desc("Allowed options");
-    desc.add_options()("about", "about this program")("help",
+    desc.add_options()("about", "about this program")("help,h",
                                                       "show this help message")(
-        "rows", po::value<int>(&rows)->default_value(10), "number of rows")(
-        "cols", po::value<int>(&cols)->default_value(10), "number of cols");
+        "rows,r", po::value<int>(&rows)->default_value(10), "number of rows")(
+        "cols,c", po::value<int>(&cols)->default_value(10), "number of cols");
 
     po::variables_map vm;
     po::store(po::parse_command_line(argc, argv, desc), vm);
