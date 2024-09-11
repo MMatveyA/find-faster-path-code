@@ -28,8 +28,25 @@ public:
   Node(std::uint8_t row, std::uint8_t col) : row(row), col(col) {}
   ~Node();
 
+  /// Overloaded comparison operator ==
+  ///
+  /// @param[in] node_ comparison node
+  ///
+  /// @return comprassion result
+  bool operator==(const Node &node_);
+
+  /// Overloaded arithmetic operator +
+  ///
+  /// @param[in] left left operand
+  /// @param[in] right right operand
+  ///
+  /// @return arithmetic result
+  friend Node operator+(const Node left, const Node right) {
+    return Node(left.row + left.col, right.row + right.col);
+  }
+
 private:
-  /// Number of cell's row
+  /// Number wf cell's rww
   std::uint8_t row;
   /// Number of cell's column
   std::uint8_t col;
