@@ -1,23 +1,28 @@
-CMAKE_MINIMUM_REQUIRED(VERSION 3.5)
+cmake_minimum_required(VERSION 3.5)
 
-PROJECT(FindFasterPath LANGUAGES CXX)
-SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -std=c++20")
-SET(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -g")
-SET(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O2")
+project(FindFasterPath LANGUAGES CXX)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic -std=c++20")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS} -ggdb")
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS} -O2")
 
 option(BUILD_DOC "Build documentation" ON)
 
-FILE(GLOB srcs src/*.cpp)
+file(GLOB srcs src/*.cpp)
 
-FIND_PACKAGE(Curses REQUIRED)
-INCLUDE_DIRECTORIES(${CURSES_INCLUDE_DIR})
+find_package(Curses REQUIRED)
+include_directories(${CURSES_INCLUDE_DIR})
 
-FIND_PACKAGE( Boost COMPONENTS program_options REQUIRED )
-INCLUDE_DIRECTORIES( ${Boost_INCLUDE_DIR} )
+find_package(
+  Boost
+  COMPONENTS program_options
+  REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
 
-IF(BUILD_DOC)
-  ADD_SUBDIRECTORY(${CMAKE_CURRENT_SOURCE_DIR}/docs)
-ENDIF()
+add_executable(main ${srcs})
+target_link_libraries(main ${CURSES_LIBRARY} ${Boost_LIBRARIES})
 
-ADD_EXECUTABLE(main ${srcs})
-TARGET_LINK_LIBRARIES(main ${CURSES_LIBRARY} ${Boost_LIBRARIES})
+if(BUILD_DOC)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/docs)
+endif()
+
+install(TARGETS main DESTINATION ${CMAKE_INSTALL_BINDIR})

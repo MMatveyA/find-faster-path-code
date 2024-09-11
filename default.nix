@@ -10,16 +10,6 @@ llvmPackages_14.stdenv.mkDerivation (finalAttrs: {
 
   cmakeFlags = [ "-DBUILD_DOC=ON" ];
 
-  installPhase = ''
-    cd docs/doxygen/latex
-    make
-    cd ../../../
-
-    mkdir -p $out/bin $out/doc
-    cp ./main $out/bin/find-faster-path
-    cp docs/doxygen/latex/refman.pdf $out/doc/refman.pdf
-  '';
-
   env = {
     TEXMFHOME = ".cache";
     TEXMFVAR = ".cache/texmf-var";

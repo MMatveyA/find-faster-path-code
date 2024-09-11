@@ -15,6 +15,8 @@ pkgs.mkShell rec {
     # Build time and Run time dependencies
     boost
     ncurses
+
+    texliveFull
   ];
 
   # Setting up the environment variables you need during
