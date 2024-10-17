@@ -30,18 +30,20 @@ double calculateHeuristic(Node *node, Node *goal) {
  * @return A node vector representing the found path from start to goal. If the
  * path is not found, an empty vector is returned.
  */
-vector<Node *> aStarSearch(vector<vector<int>> &grid, Node *start, Node *goal) {
+std::vector<Node *> aStarSearch(std::vector<std::vector<int>> &grid,
+                                Node *start, Node *goal) {
   // Создаем приоритетную очередь для хранения узлов с оценкой f = cost +
   // heuristic
-  priority_queue<pair<double, Node *>, vector<pair<double, Node *>>,
-                 greater<pair<double, Node *>>>
+  std::priority_queue<std::pair<double, Node *>,
+                      std::vector<std::pair<double, Node *>>,
+                      std::greater<std::pair<double, Node *>>>
       openList;
 
   // Создаем таблицу посещенных узлов
-  unordered_map<int, unordered_map<int, bool>> closedList;
+  std::unordered_map<int, std::unordered_map<int, bool>> closedList;
 
   // Добавляем начальный узел в очередь
-  openList.push(make_pair(calculateHeuristic(start, goal), start));
+  openList.push(std::make_pair(calculateHeuristic(start, goal), start));
 
   while (!openList.empty()) {
     // Извлекаем узел с наименьшей оценкой f из очереди
@@ -50,7 +52,7 @@ vector<Node *> aStarSearch(vector<vector<int>> &grid, Node *start, Node *goal) {
 
     // Если достигли цели, возвращаем путь
     if (current->x == goal->x && current->y == goal->y) {
-      vector<Node *> path;
+      std::vector<Node *> path;
       while (current != nullptr) {
         path.push_back(current);
         current = current->parent;
@@ -65,7 +67,7 @@ vector<Node *> aStarSearch(vector<vector<int>> &grid, Node *start, Node *goal) {
     closedList[current->x][current->y] = true;
 
     // Проверяем соседние узлы
-    vector<pair<int, int>> neighbors = {
+    std::vector<std::pair<int, int>> neighbors = {
         {0, 1}, {0, -1}, {1, 0}, {-1, 0}}; // 4-связность
 
     for (auto neighbor : neighbors) {
@@ -93,8 +95,8 @@ vector<Node *> aStarSearch(vector<vector<int>> &grid, Node *start, Node *goal) {
         neighborNode->heuristic = calculateHeuristic(neighborNode, goal);
 
         // Добавляем соседний узел в очередь
-        openList.push(make_pair(neighborNode->cost + neighborNode->heuristic,
-                                neighborNode));
+        openList.push(std::make_pair(
+            neighborNode->cost + neighborNode->heuristic, neighborNode));
 
         // Устанавливаем родителя для соседнего узла
         neighborNode->parent = current;
@@ -103,5 +105,5 @@ vector<Node *> aStarSearch(vector<vector<int>> &grid, Node *start, Node *goal) {
   }
 
   // Если путь не найден, возвращаем пустой вектор
-  return vector<Node *>();
+  return std::vector<Node *>();
 }

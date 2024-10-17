@@ -8,7 +8,7 @@ struct Node {
   Node *parent;     /// A pointer to the parent node.
 
   /**
-   * @brief Конструктор узла.
+   * @brief The node constructor.
    * @param[in] x The x coordinate of the node.
    * @param[in] y The y coordinate of the node.
    */
