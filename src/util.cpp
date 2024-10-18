@@ -1,3 +1,5 @@
+#pragma once
+
 /**
  * @file
  * @brief A file with axiliary functions
@@ -18,7 +20,7 @@
  * @param[in] goal The target node
  * @return Heuristic estimation of the distance from the node to the target
  */
-double calculateHeuristic(Node *node, Node *goal) {
+double calculateHeuristic(const Node *node, const Node *goal) {
   return abs(node->x - goal->x) + abs(node->y - goal->y);
 }
 
@@ -30,7 +32,7 @@ double calculateHeuristic(Node *node, Node *goal) {
  * @return A node vector representing the found path from start to goal. If the
  * path is not found, an empty vector is returned.
  */
-std::vector<Node *> aStarSearch(std::vector<std::vector<int>> &grid,
+std::vector<Node *> aStarSearch(const std::vector<std::vector<int>> &grid,
                                 Node *start, Node *goal) {
   // Создаем приоритетную очередь для хранения узлов с оценкой f = cost +
   // heuristic

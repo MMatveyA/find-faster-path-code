@@ -1,3 +1,4 @@
+#pragma once
 /**
  * @brief A structure for representing a graph node.
  */
@@ -12,5 +13,6 @@ struct Node {
    * @param[in] x The x coordinate of the node.
    * @param[in] y The y coordinate of the node.
    */
-  Node(int x, int y) : x(x), y(y), cost(0), heuristic(0), parent(nullptr) {}
+  Node(const int x, const int y)
+      : x(x), y(y), cost(0), heuristic(0), parent(nullptr) {}
 };
