@@ -13,7 +13,7 @@ pkgs.mkShell rec {
     gtest
 
     # Build time and Run time dependencies
-
+    boost
   ];
 
   # Setting up the environment variables you need during

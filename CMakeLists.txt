@@ -14,11 +14,15 @@ endif()
 file(GLOB srcs src/*.cpp)
 
 # External libraries
+find_package(
+  Boost
+  COMPONENTS program_options
+  REQUIRED)
+include_directories(${Boost_INCLUDE_DIR})
 
 add_executable(main ${srcs})
 
 # Adding external libraries
-
-# target_link_libraries(main)
+target_link_libraries(main ${Boost_LIBRARIES})
 
 install(TARGETS main DESTINATION ${CMAKE_INSTALL_BINDIR})

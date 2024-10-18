@@ -1,4 +1,4 @@
-{ lib, llvmPackages_14, cmake, doxygen, gnumake, texliveFull }:
+{ lib, llvmPackages_14, boost, cmake, doxygen, gnumake, texliveFull }:
 llvmPackages_14.stdenv.mkDerivation (finalAttrs: {
   pname = "find-faster-path";
   version = "0.0";
@@ -6,7 +6,7 @@ llvmPackages_14.stdenv.mkDerivation (finalAttrs: {
   src = ./.;
 
   nativeBuildInputs = [ cmake doxygen gnumake texliveFull ];
-  buildInputs = [ ];
+  buildInputs = [ boost ];
 
   cmakeFlags = [ "-DBUILD_DOC=ON" ];
 
@@ -16,7 +16,7 @@ llvmPackages_14.stdenv.mkDerivation (finalAttrs: {
   };
 
   meta = {
-    description = "";
+    description = "Find faster path on 2D map";
     homepage = "";
     license = lib.licenses.asl20-llvm;
     maintainers = with lib.maintainers; [ ];
