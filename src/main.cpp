@@ -87,13 +87,6 @@ int main(int argc, char *argv[]) {
       std::cin >> goal->y;
     }
 
-    for (const auto &row : grid) {
-      for (int cell : row) {
-        std::cout << (cell == 0 ? "□" : "■") << " ";
-      }
-      std::cout << std::endl;
-    }
-
     std::vector<Node *> path = aStarSearch(grid, start, goal);
 
     // Выводим найденный путь
@@ -108,6 +101,7 @@ int main(int argc, char *argv[]) {
         }
         std::cout << std::endl;
       }
+      std::cout << "Число ходов " << path.size() << std::endl;
     } else {
       std::cout << "Путь не найден." << std::endl;
     }

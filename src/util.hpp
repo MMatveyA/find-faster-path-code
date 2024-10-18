@@ -70,7 +70,8 @@ std::vector<Node *> aStarSearch(const std::vector<std::vector<int>> &grid,
 
     // Проверяем соседние узлы
     std::vector<std::pair<int, int>> neighbors = {
-        {0, 1}, {0, -1}, {1, 0}, {-1, 0}}; // 4-связность
+        {0, 1}, {0, -1}, {1, 0},   {-1, 0},
+        {1, 1}, {-1, 1}, {-1, -1}, {1, -1}}; // 8-связность
 
     for (auto neighbor : neighbors) {
       int nx = current->x + neighbor.first;
