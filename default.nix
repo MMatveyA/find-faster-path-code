@@ -8,7 +8,7 @@ llvmPackages_14.stdenv.mkDerivation (finalAttrs: {
   nativeBuildInputs = [ cmake doxygen gnumake texliveFull ];
   buildInputs = [ boost ];
 
-  cmakeFlags = [ "-DBUILD_DOC=ON" ];
+  cmakeFlags = [ "-DBUILD_DOC=OFF" ];
 
   env = {
     TEXMFHOME = ".cache";
