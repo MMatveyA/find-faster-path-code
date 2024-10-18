@@ -15,9 +15,9 @@
  */
 int main(int argc, char *argv[]) {
   try {
-    std::vector<std::vector<int>> grid = {{}};
-    Node *start;
-    Node *goal;
+    std::vector<std::vector<int>> grid = {};
+    Node *start = new Node(0, 0);
+    Node *goal = new Node(0, 0);
 
     boost::program_options::options_description desc("Allowed options");
     desc.add_options()("about", "message about this program")(
@@ -100,7 +100,13 @@ int main(int argc, char *argv[]) {
     if (!path.empty()) {
       std::cout << "Найденный путь:" << std::endl;
       for (const auto node : path) {
-        std::cout << "(" << node->x << ", " << node->y << ")" << std::endl;
+        grid[node->x][node->y] = 2;
+      }
+      for (const auto &row : grid) {
+        for (int cell : row) {
+          std::cout << (cell == 0 ? "□" : (cell == 1 ? "■" : "*")) << " ";
+        }
+        std::cout << std::endl;
       }
     } else {
       std::cout << "Путь не найден." << std::endl;
